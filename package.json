@@ -1,0 +1,20 @@
+{
+  "name": "node-proxy",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "author": "Christoph Bühler <christoph@smartive.ch>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.13.2",
+    "express": "^4.13.1",
+    "express-session": "^1.11.3",
+    "http-proxy": "^1.11.1",
+    "passport": "^0.2.2",
+    "passport-local": "^1.0.0"
+  }
+}
