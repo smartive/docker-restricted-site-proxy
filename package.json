@@ -1,7 +1,7 @@
 {
-  "name": "node-proxy",
-  "version": "0.0.1",
-  "description": "",
+  "name": "restricted-site-proxy",
+  "version": "0.1.0",
+  "description": "Small proxy app with express sessions. Usefull for proxying a site where you cannot use Basic-Auth or Digest-Auth because you have other mechanisms in place.",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
