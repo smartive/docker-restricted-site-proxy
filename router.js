@@ -7,13 +7,19 @@ var express = require('express'),
         strict: false
     }),
     httpProxy = require('http-proxy'),
-    urlParser = require('body-parser').urlencoded({extended: true}),
-    proxy = httpProxy.createProxyServer({
-        target: {
-            host: helpers.env('PROXY_TARGET_HOST', 'smartive.ch'),
-            port: helpers.env('PROXY_TARGET_PORT', '80')
-        }
-    });
+    urlParser = require('body-parser').urlencoded({extended: true});
+
+var options = {secure: false};
+if(helpers.env('PROXY_TARGET_HOST')){
+    options.target = {
+        host: helpers.env('PROXY_TARGET_HOST', 'google.ch'),
+        port: helpers.env('PROXY_TARGET_PORT', 80)
+    }
+} else {
+    options.target = helpers.env('PROXY_TARGET', 'http://google.ch');
+}
+var proxy = httpProxy.createProxyServer(options);
+
 
 exports = module.exports = function (passport) {
     if (!passport) throw new Error('Passport auth must be set.');
