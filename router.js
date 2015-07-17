@@ -10,7 +10,7 @@ var express = require('express'),
     urlParser = require('body-parser').urlencoded({extended: true}),
     proxy = httpProxy.createProxyServer({
         target: {
-            host: helpers.env('PROXY_TARGET_HOST', 'google.com'),
+            host: helpers.env('PROXY_TARGET_HOST', 'smartive.ch'),
             port: helpers.env('PROXY_TARGET_PORT', '80')
         }
     });
