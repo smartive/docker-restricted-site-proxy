@@ -12,6 +12,18 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(router);
 
-exports = module.exports = app;
+exports = module.exports = function (ssl) {
+    if (ssl) {
+        app.use(function (req, res, next) {
+            if (!req.secure) {
+                var port = helpers.env('PROXY_SSL_PORT', ''),
+                    host = req.headers.host.replace(/[:]\d*/, port !== '' ? ':' + port : '');
+                return res.redirect('https://' + host + req.url);
+            }
+            next();
+        });
+    }
+    app.use(router);
+    return app;
+};

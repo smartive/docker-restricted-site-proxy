@@ -1,5 +1,26 @@
-var service = require('./service'),
+var service = {},
     http = require('http'),
     helpers = require('./helpers');
 
-http.createServer(service).listen(helpers.env('PROXY_PORT', 80));
+if (helpers.env('PROXY_SSL_CERT') && helpers.env('PROXY_SSL_KEY')) {
+    var fs = require('fs'),
+        path = require('path'),
+        https = require('https'),
+        cert = helpers.env('PROXY_SSL_CERT'),
+        key = helpers.env('PROXY_SSL_KEY'),
+        credentials = {
+            key: fs.readFileSync(key[0] === '.' ? path.join(__dirname, key) : key),
+            cert: fs.readFileSync(cert[0] === '.' ? path.join(__dirname, cert) : cert)
+        };
+    service = require('./service')(true);
+
+    https.createServer(credentials, service).listen(helpers.env('PROXY_SSL_PORT', 443), function(){
+        console.log('secure (https) site proxy listening on port: ' + helpers.env('PROXY_SSL_PORT', 443));
+    });
+} else {
+    service = require('./service')(false);
+}
+
+http.createServer(service).listen(helpers.env('PROXY_PORT', 80), function(){
+    console.log('site proxy listening on port: ' + helpers.env('PROXY_PORT', 80));
+});
