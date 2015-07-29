@@ -20,7 +20,6 @@ if(helpers.env('PROXY_TARGET_HOST')){
 }
 var proxy = httpProxy.createProxyServer(options);
 
-
 exports = module.exports = function (passport) {
     if (!passport) throw new Error('Passport auth must be set.');
 
@@ -40,7 +39,9 @@ exports = module.exports = function (passport) {
         .route('/*')
         .all(function (req, res) {
             if (!req.isAuthenticated()) return res.redirect(loginUrl);
-            proxy.web(req, res);
+            proxy.web(req, res, function(err){
+                return res.end();
+            });
         });
 
     return router;
