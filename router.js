@@ -7,9 +7,14 @@ var express = require('express'),
         strict: false
     }),
     httpProxy = require('http-proxy'),
-    urlParser = require('body-parser').urlencoded({extended: true});
+    urlParser = require('body-parser').urlencoded({extended: true}),
+    options = {secure: false},
+    authEnabled = helpers.env('PROXY_SITE_USERNAME', 'user') !== '' && helpers.env('PROXY_SITE_PASSWORD', 'pass') !== '';
 
-var options = {secure: false};
+if(!authEnabled){
+    console.warn('Authentication is not enabled!');
+}
+
 if(helpers.env('PROXY_TARGET_HOST')){
     options.target = {
         host: helpers.env('PROXY_TARGET_HOST', 'google.ch'),
@@ -18,6 +23,7 @@ if(helpers.env('PROXY_TARGET_HOST')){
 } else {
     options.target = helpers.env('PROXY_TARGET', 'http://google.ch');
 }
+
 var proxy = httpProxy.createProxyServer(options);
 
 exports = module.exports = function (passport) {
@@ -38,7 +44,7 @@ exports = module.exports = function (passport) {
     router
         .route('/*')
         .all(function (req, res) {
-            if (!req.isAuthenticated()) return res.redirect(loginUrl);
+            if (!req.isAuthenticated() && authEnabled) return res.redirect(loginUrl);
             proxy.web(req, res, function(err){
                 return res.end();
             });
