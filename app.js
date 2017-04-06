@@ -1,6 +1,7 @@
-const service = {},
-    http = require('http'),
+const http = require('http'),
     helpers = require('./helpers');
+
+let service = {}
 
 if (helpers.env('PROXY_SSL_CERT') && helpers.env('PROXY_SSL_KEY')) {
     const fs = require('fs'),

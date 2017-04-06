@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Restricted site</title>
@@ -7,75 +8,79 @@
     <style>
         body {
             margin: 50px;
-            background-color: #009fe3;
+            background-color: #1e324b;
             color: #fff;
-            font-family: Roboto,sans-serif;
+            font-family: Roboto, sans-serif;
             font-weight: 300;
         }
-
+        
         h1 {
             font-weight: 300;
+            margin-top: 2em;
         }
+        
         .container {
             text-align: center;
         }
-
+        
         img {
             max-width: 400px;
             max-height: 400px;
             display: block;
-            margin: 0 auto;
+            margin: 7em auto;
         }
-
+        
         form {
             margin: 20px auto;
             max-width: 400px;
         }
-
+        
         input {
             font-size: 1.2em;
         }
-
+        
         input[type="text"],
         input[type="password"] {
             border: none;
-
             width: 100%;
             padding: 12px 8px;
             margin-bottom: 16px;
             border-radius: 3px;
+            outline: none;
         }
-
-        input[type="submit"]{
+        
+        input[type="submit"] {
             border: 2px solid #fff;
             background: #fafafa;
             color: #444;
             cursor: pointer;
             padding: 6px 24px;
             border-radius: 8px;
+            outline: none;
         }
-
+        
         input[type="submit"]:hover {
             background: #eee;
             background: #eaeaea;
         }
-
+        
         input[type="submit"]:active {
             background: #dddddd;
             background: #dadada;
         }
-
     </style>
 </head>
+
 <body>
-<div class="container">
-    <h1>Restricted site - Login required.</h1>
-    <img src="?logo=true">
-    <form method="post" action="">
-        <input type="text" name="username" placeholder="Username"/>
-        <input type="password" name="password" placeholder="Password"/>
-        <input type="submit" value="Login"/>
-    </form>
-</div>
+    <div class="container">
+        <h1>Restricted site - Login required.</h1>
+        <img src="?logo=true">
+        <form method="post" action="">
+            <input type="text" name="username" placeholder="Username" />
+            <input type="password" name="password" placeholder="Password" />
+            <input type="submit" value="Login" />
+        </form>
+    </div>
 </body>
+
 </html>
