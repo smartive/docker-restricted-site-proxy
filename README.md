@@ -1,5 +1,5 @@
 # restricted site proxy
-Based on [node:0.12.7-onbuild](https://registry.hub.docker.com/_/node/)
+Based on [node:7.8-onbuild](https://registry.hub.docker.com/_/node/)
 
 ## Description
 With this image, one can authenticate users to a special proxed site. 
@@ -75,17 +75,17 @@ Default: *pass*
 
 ### Target site
 
-####PROXY_TARGET
+#### PROXY_TARGET
 Restricted target. If PROXY_TARGET_HOST is set, this value will be ignored.
 
 Default: *http://google.ch*
 
-####PROXY_TARGET_HOST
+#### PROXY_TARGET_HOST
 Restricted target hostname. If PROXY_TARGET_HOST is set, the value of PROXY_TARGET will be ignored.
 
 Default: *null*
 
-####PROXY_TARGET_PORT
+#### PROXY_TARGET_PORT
 Restricted target port.
 
 Default: *80*
