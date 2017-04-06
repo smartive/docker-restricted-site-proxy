@@ -1,4 +1,4 @@
-var express = require('express'),
+const express = require('express'),
     app = express(),
     session = require('express-session'),
     passport = require('./auth'),
@@ -13,11 +13,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-exports = module.exports = function (ssl) {
+exports = module.exports = ssl => {
     if (ssl) {
-        app.use(function (req, res, next) {
+        app.use((req, res, next) => {
             if (!req.secure) {
-                var port = helpers.env('PROXY_SSL_PORT', ''),
+                const port = helpers.env('PROXY_SSL_PORT', ''),
                     host = req.headers.host.replace(/[:]\d*/, port !== '' ? ':' + port : '');
                 return res.redirect('https://' + host + req.url);
             }
