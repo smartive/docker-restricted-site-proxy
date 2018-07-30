@@ -35,6 +35,9 @@ exports = module.exports = passport => {
             if (req.query.logo) {
                 return res.sendFile(path.join(__dirname, 'logo.png'));
             }
+            if (req.query.favicon) {
+                return res.sendFile(path.join(__dirname, 'favicon.png'));
+            }
             res.sendFile(path.join(__dirname, 'login.html'));
         })
         .post(urlParser, passport.authenticate('local', { failureRedirect: loginUrl }), (req, res) => {
