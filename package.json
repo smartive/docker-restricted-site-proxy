@@ -10,11 +10,11 @@
   "author": "Christoph Bühler <christoph@smartive.ch>",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.13.2",
-    "express": "^4.13.1",
-    "express-session": "^1.11.3",
-    "http-proxy": "^1.11.1",
-    "passport": "^0.2.2",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "http-proxy": "^1.17.0",
+    "passport": "^0.4.0",
     "passport-local": "^1.0.0"
   }
 }
